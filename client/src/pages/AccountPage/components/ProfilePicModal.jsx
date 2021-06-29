@@ -6,6 +6,11 @@ import { useAuth } from '../../../auth/useAuth';
 const ProfilePicModal = ({ isOpen, close }) => {
     const [fileName, setFileName] = useState("Subir una imagen");
 
+    const handleFileChange = (e) => {
+        const [file] = e.target.files;
+        setFileName(file.name)
+    }
+
     return (
         <Modal open={isOpen}>
             <Modal.Header>
@@ -17,6 +22,7 @@ const ProfilePicModal = ({ isOpen, close }) => {
                     <Form.File
                         custom
                         label={fileName}
+                        onChange={handleFileChange}
                     />
                 </Form>
             </Modal.Body>
