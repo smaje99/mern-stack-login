@@ -7,12 +7,14 @@ import { useModal } from '../../hooks/useModal';
 import ChangePasswordModal from './components/ChangePasswordModal';
 import DeleteModal from './components/DeleteModal';
 import EditModal from './components/EditModal';
+import ProfilePicModal from './components/ProfilePicModal';
 
 const AccountPage = () => {
     const { user } = useAuth();
 
     const [isOpenDeleteModal, openDeleteModal, closeDeleteModal] = useModal();
     const [isOpenEditModal, openEditModal, closeEditModal] = useModal();
+    const [isOpenProfilePicModal, openProfilePicModal, closeProfilePicModal] = useModal();
     const [
         isOpenChangePasswordModal,
         openChangePasswordModal,
@@ -31,7 +33,8 @@ const AccountPage = () => {
                                 width: '200px',
                                 height: '200px',
                                 borderRadius: '50%',
-                                objectFit: 'cover'
+                                objectFit: 'cover',
+                                cursor: 'pointer'
                             }}
                         />
                     </Col>
@@ -74,6 +77,10 @@ const AccountPage = () => {
                 user={user}
                 isOpen={isOpenEditModal}
                 close={closeEditModal}
+            />
+            <ProfilePicModal
+                isOpen={isOpenProfilePicModal}
+                close={closeProfilePicModal}
             />
         </Fragment>
     );
