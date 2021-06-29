@@ -109,7 +109,11 @@ const EditModal = ({ user, isOpen, close }) => {
                 <Button variant="secondary" onClick={close}>
                     Cancelar
                 </Button>
-                <Button variant="primary" onClick={handleSubmit(onSubmit)}>
+                <Button
+                    variant="primary"
+                    onClick={handleSubmit(onSubmit)}
+                    disabled={!isDirty}
+                >
                     Actualizar mi cuenta
                 </Button>
             </Modal.Footer>
