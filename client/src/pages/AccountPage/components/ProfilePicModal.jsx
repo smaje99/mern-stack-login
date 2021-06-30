@@ -11,7 +11,7 @@ const ProfilePicModal = ({ isOpen, close }) => {
     const handleFileChange = (e) => {
         const [file] = e.target.files;
 
-        const SIZE_50MB = 52_428_800;
+        const SIZE_50MB = 52428800;
         const isValidSize = file.size < SIZE_50MB;
         const isNameOfOneImageRegEx = /.(jpe?g|gif|png)$/i;
         const isValidType = isNameOfOneImageRegEx.test(file.name);
@@ -45,7 +45,7 @@ const ProfilePicModal = ({ isOpen, close }) => {
                         accept=".jpg, .jpeg, .gif, .png"
                     />
                     <img
-                        classname="img-fluid mt-2"
+                        className="img-fluid mt-2"
                         src={selectedFile}
                         alt="profile-preview"
                     />
