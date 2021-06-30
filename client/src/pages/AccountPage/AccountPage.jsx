@@ -14,11 +14,15 @@ const AccountPage = () => {
 
     const [isOpenDeleteModal, openDeleteModal, closeDeleteModal] = useModal();
     const [isOpenEditModal, openEditModal, closeEditModal] = useModal();
-    const [isOpenProfilePicModal, openProfilePicModal, closeProfilePicModal] = useModal();
     const [
         isOpenChangePasswordModal,
         openChangePasswordModal,
         closeChangePasswordModal
+    ] = useModal();
+    const [
+        isOpenProfilePicModal,
+        openProfilePicModal,
+        closeProfilePicModal
     ] = useModal();
 
     return (
@@ -26,18 +30,18 @@ const AccountPage = () => {
             <Container>
                 <Row className="mt-4">
                     <Col xs={12} className="text-center">
-                    <img
-                        src={"/img/male_avatar.svg"}
-                        alt="profile"
-                        onClick={openProfilePicModal}
-                        style={{
-                            width: '200px',
-                            height: '200px',
-                            borderRadius: '50%',
-                            objectFit: 'cover',
-                            cursor: 'pointer'
-                        }}
-                    />
+                        <img
+                            src={"/img/male_avatar.svg"}
+                            alt="profile"
+                            onClick={openProfilePicModal}
+                            style={{
+                                width: '200px',
+                                height: '200px',
+                                borderRadius: '50%',
+                                objectFit: 'cover',
+                                cursor: 'pointer'
+                            }}
+                        />
                     </Col>
                     <Col className="mt-4">
                         <Card style={{ maxWidth: '360px'}} className="mx-auto p-4">

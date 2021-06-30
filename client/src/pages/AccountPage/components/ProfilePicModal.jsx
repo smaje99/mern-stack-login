@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Modal, Form, Button } from 'react-bootstrap';
+import { toast } from 'react-toastify';
 
 import { useAuth } from '../../../auth/useAuth';
 
@@ -9,21 +10,22 @@ const ProfilePicModal = ({ isOpen, close }) => {
 
     const handleFileChange = (e) => {
         const [file] = e.target.files;
-        setFileName(file.name)
+
+        setFileName(file);
 
         const reader = new FileReader();
-        reader.onloadend(() => {
-            // Image file in base64
+        reader.onloadend = () => {
             setSelectedFile(reader.result);
-        });
+        }
         reader.readAsDataURL(file);
     }
 
     return (
-        <Modal open={isOpen}>
-            <Modal.Header>
-                <Modal.Title>Cambiar mi foto de perfil</Modal.Title>
-
+        <Modal show={isOpen} onHide={close}>
+            <Modal.Header closeButton>
+                <Modal.Title>
+                    Cambiar mi foto de perfil
+                </Modal.Title>
             </Modal.Header>
             <Modal.Body>
                 <Form>
@@ -32,22 +34,21 @@ const ProfilePicModal = ({ isOpen, close }) => {
                         label={fileName}
                         data-browse="Subir"
                         onChange={handleFileChange}
-                        accept=".jpg, .jpeg, .png, .gif"
+                        accept=".jpg, .jpeg, .gif, .png"
+                    />
+                    <img
+                        classname="img-fluid mt-2"
+                        src={selectedFile}
+                        alt="profile-preview"
                     />
                 </Form>
-                <h2>Previsualización de imagen</h2>
-                <img
-                    className="img-fluid"
-                    src={selectedFile}
-                    alt="profile-preview"
-                />
             </Modal.Body>
             <Modal.Footer>
                 <Button variant="secondary" onClick={close}>
                     Cancelar
                 </Button>
                 <Button variant="primary">
-                    Actualizar mi imagen
+                    Actualizar imagen
                 </Button>
             </Modal.Footer>
         </Modal>
