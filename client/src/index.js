@@ -2,6 +2,7 @@ import React from 'react';
 import { render } from 'react-dom';
 
 import 'bootstrap/dist/css/bootstrap.min.css';
+import 'react-toastify/dist/ReactToastify.css';
 
 import { App } from './App';
 
