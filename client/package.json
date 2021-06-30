@@ -37,6 +37,7 @@
   "devDependencies": {
     "@hookform/resolvers": "^2.6.0",
     "react-hook-form": "^7.9.0",
-    "react-router-dom": "^5.2.0"
+    "react-router-dom": "^5.2.0",
+    "react-toastify": "^7.0.4"
   }
 }
