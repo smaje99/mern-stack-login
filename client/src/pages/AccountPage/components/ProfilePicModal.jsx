@@ -22,7 +22,9 @@ const ProfilePicModal = ({ isOpen, close }) => {
                     <Form.File
                         custom
                         label={fileName}
+                        data-browse="Subir"
                         onChange={handleFileChange}
+                        accept="image/*"
                     />
                 </Form>
             </Modal.Body>
