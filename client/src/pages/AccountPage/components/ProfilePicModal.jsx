@@ -11,6 +11,14 @@ const ProfilePicModal = ({ isOpen, close }) => {
     const handleFileChange = (e) => {
         const [file] = e.target.files;
 
+        const SIZE_50MB = 52_428_800;
+        const isValidSize = file.size < SIZE_50MB;
+        const isNameOfOneImageRegEx = /.(jpe?g|gif|png)$/i;
+        const isValidType = isNameOfOneImageRegEx.test(file.name);
+
+        if (!isValidSize) return toast.error("Imagen muy pesada, máximo 50MB");
+        if (!isValidType) return toast.error("Sólo puedes subir imágenes");
+
         setFileName(file);
 
         const reader = new FileReader();
