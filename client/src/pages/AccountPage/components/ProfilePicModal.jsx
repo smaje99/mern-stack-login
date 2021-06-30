@@ -5,10 +5,18 @@ import { useAuth } from '../../../auth/useAuth';
 
 const ProfilePicModal = ({ isOpen, close }) => {
     const [fileName, setFileName] = useState("Subir una imagen");
+    const [selectedFile, setSelectedFile] = useState(null)
 
     const handleFileChange = (e) => {
         const [file] = e.target.files;
         setFileName(file.name)
+
+        const reader = new FileReader();
+        reader.onloadend(() => {
+            // Image file in base64
+            setSelectedFile(reader.result);
+        });
+        reader.readAsDataURL(file);
     }
 
     return (
@@ -24,9 +32,15 @@ const ProfilePicModal = ({ isOpen, close }) => {
                         label={fileName}
                         data-browse="Subir"
                         onChange={handleFileChange}
-                        accept="image/*"
+                        accept=".jpg, .jpeg, .png, .gif"
                     />
                 </Form>
+                <h2>Previsualización de imagen</h2>
+                <img
+                    className="img-fluid"
+                    src={selectedFile}
+                    alt="profile-preview"
+                />
             </Modal.Body>
             <Modal.Footer>
                 <Button variant="secondary" onClick={close}>
