@@ -6,7 +6,7 @@ import { useAuth } from '../../../auth/useAuth';
 
 const ProfilePicModal = ({ isOpen, close }) => {
     const [fileName, setFileName] = useState("Subir una imagen");
-    const [selectedFile, setSelectedFile] = useState(null)
+    const [selectedFile, setSelectedFile] = useState(null);
 
     const handleFileChange = (e) => {
         const [file] = e.target.files;
@@ -19,12 +19,10 @@ const ProfilePicModal = ({ isOpen, close }) => {
         if (!isValidSize) return toast.error("Imagen muy pesada, máximo 50MB");
         if (!isValidType) return toast.error("Sólo puedes subir imágenes");
 
-        setFileName(file);
+        setFileName(file.name);
 
         const reader = new FileReader();
-        reader.onloadend = () => {
-            setSelectedFile(reader.result);
-        }
+        reader.onloadend = () => setSelectedFile(reader.result)
         reader.readAsDataURL(file);
     }
 
