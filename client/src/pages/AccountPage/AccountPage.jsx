@@ -31,7 +31,7 @@ const AccountPage = () => {
                 <Row className="mt-4">
                     <Col xs={12} className="text-center">
                         <img
-                            src={"/img/male_avatar.svg"}
+                            src={(user && user.profilePic) || "/img/male_avatar.svg"}
                             alt="profile"
                             onClick={openProfilePicModal}
                             style={{
