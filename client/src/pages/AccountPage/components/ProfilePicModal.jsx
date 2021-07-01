@@ -33,7 +33,7 @@ const ProfilePicModal = ({ isOpen, close }) => {
         close();
     }
 
-    
+    useEffect(() => !isOpen && setSelectedFile(null), [isOpen, selectedFile])
 
     return (
         <Modal show={isOpen} onHide={close}>
