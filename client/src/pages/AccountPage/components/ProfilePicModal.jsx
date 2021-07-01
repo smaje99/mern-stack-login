@@ -1,10 +1,11 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Modal, Form, Button } from 'react-bootstrap';
 import { toast } from 'react-toastify';
 
 import { useAuth } from '../../../auth/useAuth';
 
 const ProfilePicModal = ({ isOpen, close }) => {
+    const { updateUser } = useAuth();
     const [fileName, setFileName] = useState("Subir una imagen");
     const [selectedFile, setSelectedFile] = useState(null);
 
@@ -25,6 +26,14 @@ const ProfilePicModal = ({ isOpen, close }) => {
         reader.onloadend = () => setSelectedFile(reader.result)
         reader.readAsDataURL(file);
     }
+
+    const handleUpdateProfilePic = () => {
+        if (!selectedFile) return toast.error('Debes seleccionar una nueva imagen');
+        updateUser({ profilePic: selectedFile });
+        close();
+    }
+
+    
 
     return (
         <Modal show={isOpen} onHide={close}>
@@ -53,7 +62,7 @@ const ProfilePicModal = ({ isOpen, close }) => {
                 <Button variant="secondary" onClick={close}>
                     Cancelar
                 </Button>
-                <Button variant="primary">
+                <Button variant="primary" onClick={handleUpdateProfilePic}>
                     Actualizar imagen
                 </Button>
             </Modal.Footer>
